@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		#clock
+		{
+			width: 200px;
+			height: 200px;
+			border: 3px solid brown;
+			border-radius: 50%;
+			margin: 100px auto;
+			position: relative;
+		}
+
+		.point
+		{
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			margin: auto;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: brown;
+			border-radius: 50%;
+
+		}
+
+		.h
+		{
+			background-color: #555555;
+			width: 4px;
+			height: 60px;
+			border-radius: 2px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: calc(50% - 60px);
+			margin: auto;
+			transform-origin: 50% 100%;
+		}
+
+		.m
+		{
+			background-color: #555555;
+			width: 3px;
+			height: 80px;
+			border-radius: 2px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: calc(50% - 80px);
+			margin: auto;
+			transform-origin: 50% 100%;
+		}
+
+		.s
+		{
+			background-color: deeppink;
+			width: 1px;
+			height: 90px;
+			border-radius: 1px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: calc(50% - 90px);
+			margin: auto;
+			transform-origin: 50% 100%;
+		}
+
+		.num
+		{
+			/*background-color: green;*/
+			width: 20px;
+			height: 90px;
+			border-radius: 1px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: calc(50% - 90px);
+			margin: auto;
+			transform-origin: 50% 100%;
+		}
+
+		.lable
+		{
+			/*background-color: orangered;*/
+			width: 20px;
+			height:20px;
+			text-align: center;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+
+<div id="clock">
+	<div class="h"></div>
+	<div class="m"></div>
+	<div class="s"></div>
+	<div class="point"></div>
+</div>
+
+<script>
+
+	function printNum()
+	{
+		for(let i=1;i<=12;i++)
+		{
+			let clock = document.querySelector('#clock');
+			let el    = document.createElement('div');
+			el.classList.add('num');
+			let la = document.createElement('div');
+			la.classList.add('lable');
+			let text = document.createTextNode(i);
+			la.appendChild(text);
+			la.style.transform = `rotate(${i * -30}deg)`;
+
+			el.appendChild(la);
+			el.style.transform = `rotate(${i * 30}deg)`;
+			clock.appendChild(el);
+		}
+
+	}
+
+
+
+	function time()
+	{
+		let date  = new Date();
+		let hours = date.getHours() < 13 ? date.getHours() :
+			date.getHours() - 12;
+
+		let hh            = hours + (date.getMinutes() / 60);
+		h                 = document.querySelector('#clock .h');
+		h.style.transform = `rotate(${hh * 30}deg)`;
+
+		let mm            = (date.getMinutes() * 6) + date.getSeconds() / 60;
+		m                 = document.querySelector('#clock .m');
+		m.style.transform = `rotate(${mm}deg)`;
+
+		let ss            = (date.getSeconds() + date.getMilliseconds() / 1000) * 6;
+		s                 = document.querySelector('#clock .s');
+		s.style.transform = `rotate(${ss}deg)`;
+
+	}
+	printNum();
+	setInterval(time, 50);
+</script>
+
+</body>
+</html>

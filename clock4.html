@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<button onclick="mosion()">Click</button>
+	<div class="circle">
+		<div class="h" id="h"></div>
+		<div class="m" id="m"></div>
+		<div class="s" id="s"></div>
+		<div class="point"></div>
+	</div>
+</body>
+</html>
+
+
+<script>
+
+	function mosion()
+	{
+		number();
+		setInterval(()=>{
+			let d = new Date();
+			let h = (d.getHours() < 13) ? d.getHours() : d.getHours() - 12;
+			let m = d.getMinutes();
+			let s = d.getSeconds();
+
+			clock(h,m,s);
+		},10);
+
+	}
+
+	function clock(h,m,s)
+	{
+		let ht = (h * 30)+((m*6)/30);
+		let mt = m * 6;
+		let st = (s * 6);
+
+		tagH = document.getElementById('h');
+		tagM = document.getElementById('m');
+		tagS = document.getElementById('s');
+		tagH.style.transform = `rotate(${ht}deg)`;
+		tagM.style.transform = `rotate(${mt}deg)`;
+		tagS.style.transform = `rotate(${st}deg)`;
+
+	}
+
+
+	function number()
+	{
+		let cir = document.querySelector('.circle');
+		for(let i=1;i<=12;i++)
+		{
+			let el = document.createElement('div');
+			let text = document.createTextNode(i);
+			let t = document.createElement('div');
+			// t.style.backgroundColor = 'yellow';
+			t.appendChild(text);
+
+			t.style.transform = `rotate(${i* -30}deg)`;
+			el.appendChild(t)
+			el.classList.add('num');
+			el.style.transform = `rotate(${i*30}deg)`;
+			cir.appendChild(el);
+		}
+	}
+</script>

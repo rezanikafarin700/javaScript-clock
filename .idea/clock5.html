@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.circle
+		{
+			width: 200px;
+			height:200px;
+			border:4px solid saddlebrown;
+			position: relative;
+			border-radius: 50%;
+			margin: 100px auto;
+		}
+
+		.disc
+		{
+			position: absolute;
+			margin: auto;
+			top: 0;
+			bottom: 0;
+			left:0;
+			right:0;
+			background-color: saddlebrown;
+			border-radius: 50%;
+			width: 15px;
+			height: 15px;
+		}
+
+		.h
+		{
+			width: 4px;
+			height:60px;
+			background-color: #555;
+			position: absolute;
+			top: calc(50% - 60px);
+			left: 0;
+			right: 0;
+			margin: auto;
+			transform-origin: 50% 100%;
+		}
+		.m
+		{
+			width: 3px;
+			height:80px;
+			background-color: #555;
+			position: absolute;
+			top: calc(50% - 80px);
+			left: 0;
+			right: 0;
+			margin: auto;
+			transform-origin: 50% 100%;
+		}
+		.s
+		{
+			width: 2px;
+			height:90px;
+			background-color: #555;
+			position: absolute;
+			top: calc(50% - 90px);
+			left: 0;
+			right: 0;
+			margin: auto;
+			transform-origin: 50% 100%;
+		}
+		.num
+		{
+			width: 30px;
+			height:90px;
+			/*background-color: green;*/
+			position: absolute;
+			top: calc(50% - 90px);
+			left: 0;
+			right: 0;
+			margin: auto;
+			transform-origin: 50% 100%;
+			text-align: center;
+		}
+		.lable
+		{
+			/*background-color: red;*/
+			position: absolute;
+			top: 0;
+			left:0;
+			right: 0;
+			margin: auto;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div class="circle">
+	<div class="h"></div>
+	<div class="m"></div>
+	<div class="s"></div>
+	<div class="disc"></div>
+</div>
+
+
+<script>
+
+	function printNum()
+	{
+		for(let i=1;i<=12;i++)
+		{
+			let text = document.createTextNode(i);
+			let lable = document.createElement('div');
+			lable.classList.add('lable');
+			lable.appendChild(text);
+			lable.style.transform = `rotate(${i* -30}deg)`;
+			let el = document.createElement('h2');
+			el.classList.add('num');
+			el.appendChild(lable);
+			el.style.transform = `rotate(${30*i}deg)`;
+			let cir = document.querySelector('.circle');
+			cir.appendChild(el);
+		}
+	}
+
+
+	function update()
+	{
+		var date = new Date();
+
+		hours = date.getHours() < 12 ? date.getHours()
+			: date.getHours() - 12;
+
+		let h = document.querySelector('.h');
+		let m = document.querySelector('.m');
+		let s = document.querySelector('.s');
+
+
+		h.style.transform =
+			`rotate(${(hours + (date.getMinutes()/60)) *30}deg)`;
+		m.style.transform =
+			`rotate(${(date.getMinutes()+ (date.getSeconds()/60) )*6}deg)`;
+
+		s.style.transform =
+			`rotate(${(date.getSeconds() + (date.getMilliseconds()/1000))*6}deg)`
+
+	}
+	printNum();
+	setInterval(update,50);
+</script>
+
+</body>
+</html>

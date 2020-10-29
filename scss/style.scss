@@ -1,0 +1,86 @@
+.circle
+{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	border: 3px solid black;
+	margin: 100px auto;
+	position: relative;
+
+	.point
+	{
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		background-color: black;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		margin: auto;
+
+	}
+	.h
+	{
+		width: 5px;
+		height: 70px;
+		background-color: black;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: calc(50% - 40px);
+		right: 0;
+		margin: auto;
+		//transform: rotate(5*30deg);
+		transform-origin:  50% 100%;
+
+	}
+	.m
+	{
+		width: 3px;
+		height: 80px;
+		background-color: green;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: calc(50% - 30px);
+		right: 0;
+		margin: auto;
+		//transform: rotate(5*30deg);
+		transform-origin:  50% 100%;
+
+	}
+	.s
+	{
+		width: 1px;
+		height: 90px;
+		background-color: deeppink;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: calc(50% - 10px);
+		right: 0;
+		margin: auto;
+		//transform: rotate(5*30deg);
+		transform-origin:  50% 100%;
+
+	}
+
+	.num
+	{
+		width: 20px;
+		height: 90px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: calc(50% - 10px);
+		right: 0;
+		margin: auto;
+		//transform: rotate(5*30deg);
+		transform-origin:  50% 100%;
+
+
+	}
+
+}

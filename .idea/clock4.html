@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		#circle{
+			width: 200px;
+			height: 200px;
+			border: 3px solid saddlebrown;
+			border-radius: 50%;
+			position: relative;
+			margin: 100px auto;
+		}
+		.num
+		{
+			width: 30px;
+			height: 90px;
+			/*background-color: green;*/
+			color: #000000;
+			position: absolute;
+			text-align: center;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: calc(50% - 90px);
+			transform-origin: 50% 100%;
+		}
+		.lable
+		{
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			text-align: center;
+			margin: auto;
+			left: 0;
+			right: 0;
+			/*background-color: red;*/
+		}
+		#circle .point{
+			position: absolute;
+			margin: auto;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 10px;
+			height:10px;
+			border-radius: 50%;
+			background-color: saddlebrown;
+
+		}
+
+
+		#circle .h
+		{
+			width: 3px;
+			height:60px;
+			background-color: #555555;
+			position: absolute;
+			margin: auto;
+			left: 0;
+			/*bottom:0;*/
+			right: 0;
+			top: calc(50% - 60px);
+			transform-origin: 100% 100%;
+			border-radius: 3px;
+		}
+		#circle .m
+		{
+			width: 2px;
+			height:80px;
+			background-color: #353131;
+			position: absolute;
+			margin: auto;
+			left: 0;
+			/*bottom:0;*/
+			right: 0;
+			top: calc(50% - 80px);
+			transform-origin: 50% 100%;
+			border-radius: 3px;
+		}
+		#circle .s
+		{
+			width: 1px;
+			height:90px;
+			background-color: deeppink;
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: calc(50% - 90px);
+			transform-origin: 50% 100%;
+		}
+
+	</style>
+</head>
+<body>
+
+<div id="circle">
+	<div class="point"></div>
+	<div class="h"></div>
+	<div class="m"></div>
+	<div class="s"></div>
+</div>
+<br><br>
+<button id="start" onclick="start()">Srart</button>
+<button id="stop" onclick="stop()">Stop</button>
+
+
+<script>
+	var control;
+
+
+	function printNum()
+	{
+		var frag = document.createDocumentFragment();
+		for(i=1;i<=12;i++)
+		{
+			let el = document.createElement('h2');
+			let text = document.createTextNode(i);
+			let lable = document.createElement('div');
+			lable.appendChild(text);
+			lable.style.transform = `rotate(${i*(-30)}deg)`;
+			lable.classList.add('lable');
+			el.appendChild(lable);
+			el.classList.add('num');
+			el.style.transform = `rotate(${i*30}deg)`;
+			frag.appendChild(el);
+		}
+		let cir = document.querySelector('#circle');
+		cir.appendChild(frag);
+
+
+	}
+
+	function update()
+	{
+		let date = new Date();
+		let hours = date.getHours() < 13 ? date.getHours()
+			: date.getHours() - 12;
+
+
+		let h = document.querySelector('.h');
+		let m = document.querySelector('.m');
+		let s = document.querySelector('.s');
+
+
+		h.style.transform = `rotate(${(hours + date.getMinutes() /60)
+		*30}deg)`;
+
+		m.style.transform = `rotate(${(date.getMinutes()  +
+			date.getSeconds()/60) * 6}deg)`;
+
+		s.style.transform = `rotate(${(date.getSeconds() +
+			date.getMilliseconds()/1000) *6}deg)`;
+
+
+	}
+
+	function start()
+	{
+		printNum();
+		control = setInterval(update,50);
+	}
+	function stop()
+	{
+		printNum();
+		 clearInterval(control);
+	}
+</script>
+
+</body>
+</html>
